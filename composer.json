@@ -1,0 +1,29 @@
+{
+   "name": "sndsgd/event",
+   "description": "A collection of tools for implementing event handling",
+   "type": "library",
+   "homepage": "https://github.com/sndsgd/sndsgd-event",
+   "license": "MIT",
+   "authors": [
+      {
+         "name": "Russell B",
+         "homepage": "http://snds.gd/"
+      }
+   ],
+   "support": {
+      "issues": "https://github.com/sndsgd/sndsgd-event/issues",
+      "source": "https://github.com/sndsgd/sndsgd-event/tree/master"
+   },
+   "require": {
+      "php": ">=5.5.0",
+      "sndsgd/util": "dev-master"
+   },
+   "require-dev": {
+      "phpunit/phpunit": "~4.0"
+   },
+   "autoload": {
+      "psr-4": {
+         "sndsgd\\event\\": "src/"
+      }
+   }
+}
