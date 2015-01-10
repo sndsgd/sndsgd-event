@@ -2,6 +2,8 @@
 
 namespace sndsgd\event;
 
+use \sndsgd\Event;
+
 
 /**
  * An event handler

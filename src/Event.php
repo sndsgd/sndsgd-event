@@ -1,6 +1,6 @@
 <?php
 
-namespace sndsgd\event;
+namespace sndsgd;
 
 use \InvalidArgumentException;
 
@@ -8,7 +8,7 @@ use \InvalidArgumentException;
 /**
  * An event
  */
-class Event extends Base
+class Event extends \sndsgd\event\Base
 {
    use \sndsgd\util\data\Manager;
 

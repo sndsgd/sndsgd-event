@@ -3,6 +3,8 @@
 namespace sndsgd\event;
 
 use \InvalidArgumentException;
+use \sndsgd\Event;
+
 
 /**
  * A trait that allows objects to receive events
@@ -103,8 +105,8 @@ trait Target
       }
       else {
          throw new InvalidArgumentException(
-            "invalid value provided for 'event'; expecting an instance of ".
-            "sndsgd\Event or an event name as string"
+            "invalid value provided for 'event'; ".
+            "expecting an event name as string"
          );
       }
 

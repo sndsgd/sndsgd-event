@@ -1,6 +1,6 @@
 <?php
 
-use \sndsgd\event\Event;
+use \sndsgd\Event;
 use \sndsgd\event\Handler;
 
 class HandlerTest extends PHPUnit_Framework_TestCase
