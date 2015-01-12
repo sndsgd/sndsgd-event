@@ -1,9 +1,11 @@
 <?php
 
-use \sndsgd\Event;
-use \sndsgd\event\Handler;
+namespace sndsgd\event;
 
-class HandlerTest extends PHPUnit_Framework_TestCase
+use \sndsgd\Event;
+
+
+class HandlerTest extends \PHPUnit_Framework_TestCase
 {
    public static $temp = [];
 
@@ -32,13 +34,13 @@ class HandlerTest extends PHPUnit_Framework_TestCase
 
    public function testCanHandle()
    {
-      $handler = new Handler('parse', 'HandlerTest::exampleHandler');
+      $handler = new Handler('parse', '\sndsgd\event\HandlerTest::exampleHandler');
       $this->assertTrue($handler->canHandle('parse', null));
       $this->assertFalse($handler->canHandle('parse', 'ns'));
       $this->assertFalse($handler->canHandle('nope', null));
       $this->assertFalse($handler->canHandle('nope', 'ns'));
 
-      $handler = new Handler('parse.ns', 'HandlerTest::exampleHandler');
+      $handler = new Handler('parse.ns', '\sndsgd\event\HandlerTest::exampleHandler');
       $this->assertTrue($handler->canHandle('parse', 'ns'));
       $this->assertTrue($handler->canHandle(null, 'ns'));
       $this->assertFalse($handler->canHandle(null, 'nope'));

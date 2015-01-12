@@ -1,9 +1,9 @@
 <?php
 
-use \sndsgd\Event;
+namespace sndsgd;
 
 
-class EventTest extends PHPUnit_Framework_TestCase
+class EventTest extends \PHPUnit_Framework_TestCase
 {
    public function testSplit()
    {
@@ -35,6 +35,5 @@ class EventTest extends PHPUnit_Framework_TestCase
       $this->assertNull($ev->getType());
       $this->assertEquals('ns', $ev->getNamespace());
    }
-
 }
 

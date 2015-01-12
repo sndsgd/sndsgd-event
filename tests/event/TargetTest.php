@@ -1,7 +1,8 @@
 <?php
 
+namespace sndsgd\event;
+
 use \sndsgd\Event;
-use \sndsgd\event\Handler;
 
 
 class TestTarget
@@ -10,7 +11,7 @@ class TestTarget
 }
 
 
-class TargetTest extends PHPUnit_Framework_TestCase
+class TargetTest extends \PHPUnit_Framework_TestCase
 {
    public static $temp = [];
 
@@ -28,9 +29,9 @@ class TargetTest extends PHPUnit_Framework_TestCase
    {
       $this->t = new TestTarget();
 
-      $this->t->on('two', 'TargetTest::exampleHandler');
-      $this->t->on('three', 'TargetTest::exampleHandler');
-      $this->t->on('one', 'TargetTest::exampleHandler', true);
+      $this->t->on('two', '\sndsgd\event\TargetTest::exampleHandler');
+      $this->t->on('three', '\sndsgd\event\TargetTest::exampleHandler');
+      $this->t->on('one', '\sndsgd\event\TargetTest::exampleHandler', true);
    }
 
    private function getOrderedHandlerEventTypes()
@@ -56,12 +57,12 @@ class TargetTest extends PHPUnit_Framework_TestCase
     */
    public function testOnException()
    {
-      $this->t->on(42, 'TargetTest::exampleHandler');
+      $this->t->on(42, '\sndsgd\event\TargetTest::exampleHandler');
    }
 
    public function testOff()
    {
-      $this->t->on('four.ns', 'TargetTest::exampleHandler');
+      $this->t->on('four.ns', '\sndsgd\event\TargetTest::exampleHandler');
       $this->assertEquals(4, count($this->t->getEventHandlers()));
       $this->t->off('.ns');
       $this->assertEquals(3, count($this->t->getEventHandlers()));
@@ -78,7 +79,7 @@ class TargetTest extends PHPUnit_Framework_TestCase
       $expect = ['type' => 'one', 'namespace' => null, 'data' => []];
       $this->assertEquals($expect, self::$temp);
 
-      $this->t->on('four.ns', 'TargetTest::exampleHandler');
+      $this->t->on('four.ns', '\sndsgd\event\TargetTest::exampleHandler');
       $this->t->fire('four'); // doesn't have the namespace
       $this->assertEquals($expect, self::$temp);
 

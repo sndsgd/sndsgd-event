@@ -10,7 +10,7 @@ use \InvalidArgumentException;
  */
 class Event extends \sndsgd\event\Base
 {
-   use \sndsgd\util\data\Manager;
+   use \sndsgd\data\Manager;
 
    /**
     * Split an event in the type and namespace portions

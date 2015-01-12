@@ -12,15 +12,11 @@ matrix:
     - php: hhvm
     - php: hhvm-nightly
 
-before_install:
-  - composer self-update
-
 install:
   - composer install --no-interaction --prefer-source --dev
-  - composer require satooshi/php-coveralls:dev-master
 
 script:
   - phpunit --coverage-clover tests/coverage-clover.xml
 
 after_script:
-  - vendor/bin/coveralls -v
+  - bin/aftertest

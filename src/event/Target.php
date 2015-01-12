@@ -14,7 +14,7 @@ trait Target
    /**
     * Handler functions, keyed by event type
     * 
-    * @var array.<sndsgd\event\Handler>
+    * @var array.<string, sndsgd\event\Handler>
     */
    protected $eventHandlers = [];
 
