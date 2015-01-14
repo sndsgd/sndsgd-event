@@ -83,7 +83,9 @@ class TargetTest extends \PHPUnit_Framework_TestCase
       $this->t->fire('four'); // doesn't have the namespace
       $this->assertEquals($expect, self::$temp);
 
-      $ev = new Event('four.ns', ['one' => 1]);
+      $ev = new Event('four.ns');
+      $ev->setData(['one' => 1]);
+
       $this->t->fire($ev, ['two' => 2]);
       $expect = [
          'type' => 'four', 

@@ -33,11 +33,11 @@ trait Target
     * 
     * @param string $event The name of the event
     * @param string|callable $handler The function that handles the event
-    * @param boolean $unshift Add the handler at the top of the stack
+    * @param boolean $prepend Add the handler at the top of the stack
     * @return sndsgd\event\Target
     * @throws InvalidArgumentException If the event isn't a string
     */
-   public function on($event, $handler, $unshift = false)
+   public function on($event, $handler, $prepend = false)
    {
       if (!is_string($event)) {
          throw new InvalidArgumentException(
@@ -47,7 +47,7 @@ trait Target
       }
 
       $handler = new Handler($event, $handler);
-      if ($unshift === false) {
+      if ($prepend === false) {
          $this->eventHandlers[] = $handler;
       }
       else {
@@ -93,21 +93,20 @@ trait Target
     * @return boolean:true All handlers returned true or no handlers exist
     * @throws InvalidArgumentException If the event isn't a string
     */
-   public function fire($event, array $data = [])
+   public function fire($event, array $data = null)
    {
       if (is_string($event)) {
-         $event = new Event($event, $data);
+         $event = new Event($event);
       }
-      else if ($event instanceof Event) {
-         if ($data) {
-            $event->addData($data);
-         }
-      }
-      else {
+      else if (($event instanceof Event) === false) {
          throw new InvalidArgumentException(
-            "invalid value provided for 'event'; ".
-            "expecting an event name as string"
-         );
+            "invalid value provided for 'event'; expecting an instance of ".
+            "sndsgd\Event or an event name as string"
+         );  
+      }
+
+      if ($data !== null) {
+         $event->addData($data);
       }
 
       $type = $event->getType();

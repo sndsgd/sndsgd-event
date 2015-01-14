@@ -12,6 +12,9 @@ class Event extends \sndsgd\event\Base
 {
    use \sndsgd\data\Manager;
 
+   const PREPEND = 1;
+   const APPEND = 2;
+
    /**
     * Split an event in the type and namespace portions
     *
@@ -35,15 +38,27 @@ class Event extends \sndsgd\event\Base
    }
 
    /**
+    * The event type
+    * 
+    * @var string
+    */
+   protected $type;
+
+   /**
+    * A namespace
+    * 
+    * @var string
+    */
+   protected $namespace;
+
+   /**
     * Create a new event
     *
     * @param string $event The type/namespace combo for an event
-    * @param array $data 
     */
-   public function __construct($event, array $data = [])
+   public function __construct($event)
    {
       list($this->type, $this->namespace) = self::split($event);
-      $this->setData($data);
    }
 }
 

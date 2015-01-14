@@ -23,11 +23,13 @@ class HandlerTest extends \PHPUnit_Framework_TestCase
       $handler = new Handler('parse', function(Event $ev) {
          HandlerTest::$temp = $ev->getData();
       });
-      $ev = new Event('parse', ['one' => 1]);
+      $ev = new Event('parse');
+      $ev->addData(['one' => 1]);
       $handler->handle($ev);
       $this->assertEquals(HandlerTest::$temp, ['one' => 1]);
 
-      $ev = new Event('parse', ['two' => 2]);
+      $ev = new Event('parse');
+      $ev->setData(['two' => 2]);
       $handler->handle($ev);
       $this->assertEquals(HandlerTest::$temp, ['two' => 2]);
    }
