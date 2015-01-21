@@ -87,13 +87,13 @@ trait Target
     *
     * Note: if a handler returns boolean false, any remaining handlers are skipped
     * @param sndsgd\Event|string $event An event, or a type/namespace combo
-    * @param array $args Additional data to add to the event
+    * @param array $data Additional data to add to the event
     * @return boolean
     * @return boolean:false A handler returned false
     * @return boolean:true All handlers returned true or no handlers exist
-    * @throws InvalidArgumentException If the event isn't a string
+    * @throws InvalidArgumentException If the event isn't an event or a string
     */
-   public function fire($event, array $data = null)
+   public function fire($event, array $data = [])
    {
       if (is_string($event)) {
          $event = new Event($event);
@@ -105,7 +105,7 @@ trait Target
          );  
       }
 
-      if ($data !== null) {
+      if ($data) {
          $event->addData($data);
       }
 
