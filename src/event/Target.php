@@ -87,26 +87,28 @@ trait Target
     *
     * Note: if a handler returns boolean false, any remaining handlers are skipped
     * @param sndsgd\Event|string $event An event, or a type/namespace combo
-    * @param array $data Additional data to add to the event
+    * @param array.<string,mixed> $data Data to add to the event
     * @return boolean
     * @return boolean:false A handler returned false
     * @return boolean:true All handlers returned true or no handlers exist
-    * @throws InvalidArgumentException If the event isn't an event or a string
+    * @throws InvalidArgumentException If the event isn't a string
     */
    public function fire($event, array $data = [])
    {
       if (is_string($event)) {
          $event = new Event($event);
+         $event->setData($data);
       }
-      else if (($event instanceof Event) === false) {
+      else if ($event instanceof Event) {
+         if ($data) {
+            $event->addData($data);
+         }
+      }
+      else {
          throw new InvalidArgumentException(
-            "invalid value provided for 'event'; expecting an instance of ".
-            "sndsgd\Event or an event name as string"
-         );  
-      }
-
-      if ($data) {
-         $event->addData($data);
+            "invalid value provided for 'event'; ".
+            "expecting an event name as string"
+         );
       }
 
       $type = $event->getType();
