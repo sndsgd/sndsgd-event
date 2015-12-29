@@ -10,7 +10,7 @@ use \InvalidArgumentException;
  */
 class Event extends \sndsgd\event\Base
 {
-   use \sndsgd\data\Manager;
+   use DataTrait;
 
    const PREPEND = 1;
    const APPEND = 2;
